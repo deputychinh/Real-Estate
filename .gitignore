@@ -1,0 +1,45 @@
+# Secrets — never commit real env values
+.env
+.env.local
+!*.env.example
+
+# Node / Nuxt frontend
+node_modules/
+.nuxt/
+.output/
+.data/
+dist/
+coverage/
+npm-debug.log*
+
+# Python backend
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.coverage
+*.egg-info/
+build/
+
+# Redis dump
+dump.rdb
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+backend.hcl
+crash.log
+
+# Editor / AI tool configs (local only, not part of the project)
+.cursor/
+.vscode/
+.idea/
+kimi-code/
+
+# OS
+.DS_Store
+*.log

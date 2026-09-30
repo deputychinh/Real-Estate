@@ -1,0 +1,58 @@
+// Design tokens: the only place raw colours, spacing and radii are written (plan §7.5).
+// Components use these variables or the CSS custom properties generated in main.scss.
+
+$color-primary: #ff5c41;
+$color-primary-dark: #e0452b;
+$color-primary-soft: #fff1ee;
+$color-accent: #ff8c41;
+$color-secondary: #1c2d3a;
+$color-success: #2e9e4f;
+$color-info: #2f80ed;
+$color-warning: #b87306;
+$color-danger: #d93a2b;
+$color-text: #4a545b;
+$color-text-strong: #1c2d3a;
+$color-text-muted: #6b757c;
+$color-border: #e6e9ec;
+$color-bg: #ffffff;
+$color-bg-soft: #f7f8fa;
+
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+$space-7: 48px;
+$space-8: 64px;
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+$radius-pill: 999px;
+
+// Single-line form controls (input, select) and buttons share this height so a filter row lines
+// up edge to edge; <select> ignores line-height for its box height in some browsers, so height
+// must be explicit rather than derived from padding + line-height.
+$control-height: 50px;
+
+$shadow-card: 0 4px 20px rgba(28, 45, 58, 0.08);
+$shadow-hover: 0 10px 30px rgba(28, 45, 58, 0.14);
+
+$font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.75rem;
+
+$container-width: 1200px;
+$transition: 0.2s ease;
+
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);

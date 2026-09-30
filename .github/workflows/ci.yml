@@ -1,0 +1,63 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_call:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt && pip install ".[dev]"
+      - run: ruff check . && ruff format --check .
+      - run: mypy app scripts
+      - run: pytest -q --cov --cov-fail-under=80
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test
+      - run: npm run build
+
+  infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+      - run: tofu fmt -check -recursive infra/terraform
+      - run: |
+          for env in staging prod; do
+            tofu -chdir=infra/terraform/envs/$env init -backend=false -input=false
+            tofu -chdir=infra/terraform/envs/$env validate
+          done
+      - run: shellcheck -x -P scripts/aws scripts/aws/*.sh
+
+  docker:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - run: docker build -t re-portal-backend:ci backend
+      - run: docker build -t re-portal-frontend:ci frontend

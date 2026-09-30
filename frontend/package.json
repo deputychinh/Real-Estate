@@ -1,0 +1,35 @@
+{
+  "name": "re-portal-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "gen:api": "openapi-typescript http://127.0.0.1:8000/api/v1/openapi.json --enum -o app/types/api.generated.ts"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^1.0.2",
+    "nuxt": "^4.5.2",
+    "pinia": "^4.0.3",
+    "vue": "^3.5.43",
+    "vue-router": "^5.3.1"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/test-utils": "^4.3.2",
+    "@vue/test-utils": "^2.5.1",
+    "eslint": "^10.11.0",
+    "happy-dom": "^20.14.5",
+    "openapi-typescript": "^7.13.0",
+    "sass-embedded": "^1.105.0",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.2",
+    "vue-tsc": "^3.3.11"
+  }
+}

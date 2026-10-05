@@ -141,6 +141,12 @@ npm run dev                                 # http://localhost:3000, proxies /ap
 - Web: <http://localhost:3000>
 - API docs (Swagger): <http://localhost:8000/docs>
 
+## Screenshots
+
+| Home | Listing detail |
+|---|---|
+| ![Home page](docs/screenshots/home.png) | ![Listing detail page](docs/screenshots/listing-detail.png) |
+
 ## Quality checks
 
 ```bash
